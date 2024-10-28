@@ -30,3 +30,9 @@ Erste Dependency einbinden mit `go get github.com/go-chi/chi/v5`.
 
 
 hey -n 200 -m POST -d '{ "age": 8, "breed": "chow" }' http://localhost:8080/api/quote
+
+https://alphasec.io/how-to-deploy-a-github-container-image-to-google-cloud-run/
+
+europe-west10-docker.pkg.dev/dogop-serverless/ghcr/remast/dogop-serverless:latest
+
+hey -n 200 -m POST -d '{ "age": 8, "breed": "chow" }' https://dogop-serverless-746651650023.europe-west10.run.app/api/quote
