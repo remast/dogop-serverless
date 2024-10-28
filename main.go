@@ -1,13 +1,12 @@
-package main
+package dogop
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"net/http"
 
+	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/go-playground/validator/v10"
-	"github.com/kelseyhightower/envconfig"
 	"schneider.vip/problem"
 )
 
@@ -40,6 +39,8 @@ func HandleQuote(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println("Calculate quote for", quote)
+
 	tariff := Tariff{Name: "Dog OP _ Basic", Rate: 12.4}
 	quote.Tariffs = []Tariff{tariff}
 
@@ -54,24 +55,7 @@ func HandleQuote(w http.ResponseWriter, r *http.Request) {
 
 var validate *validator.Validate
 
-func main() {
+func init() {
 	validate = validator.New(validator.WithRequiredStructEnabled())
-	var config Config
-	err := envconfig.Process("dogop", &config)
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-
-	r := http.NewServeMux()
-	r.HandleFunc("POST /api/quote", HandleQuote)
-
-	// Register Health Check Handler Function
-	// r.HandleFunc("GET /health", h.HandlerFunc)
-
-	r.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("Hello DogOp!"))
-	})
-
-	log.Printf("Listening on port %v", config.Port)
-	http.ListenAndServe(fmt.Sprintf(":%v", config.Port), r)
+	functions.HTTP("HandleQuote", HandleQuote)
 }

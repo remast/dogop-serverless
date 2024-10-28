@@ -1,3 +1,7 @@
 build
 tmp
 dogop
+*zip
+*bin
+results.html
+.DS_Store

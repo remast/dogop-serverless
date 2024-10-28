@@ -1,6 +1,6 @@
 GET http://localhost:8080/
 
-###
+### local
 
 POST http://localhost:8080/api/quote
 content-type: application/json
@@ -9,6 +9,37 @@ content-type: application/json
    "age": 8,
    "breed": "chow"
 }
+
+### local
+
+POST https://dogop-serverless-746651650023.europe-west10.run.app/api/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
+
+###
+
+POST https://europe-west10-dogop-serverless.cloudfunctions.net/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
+
+### Container App
+
+POST https://dogop-serverless.livelyground-3e6e8048.westeurope.azurecontainerapps.io//api/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
+
 
 ###
 

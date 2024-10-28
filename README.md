@@ -36,3 +36,10 @@ https://alphasec.io/how-to-deploy-a-github-container-image-to-google-cloud-run/
 europe-west10-docker.pkg.dev/dogop-serverless/ghcr/remast/dogop-serverless:latest
 
 hey -n 200 -m POST -d '{ "age": 8, "breed": "chow" }' https://dogop-serverless-746651650023.europe-west10.run.app/api/quote
+
+
+hey -n 200 -m POST -d '{ "age": 8, "breed": "chow" }' https://europe-west10-dogop-serverless.cloudfunctions.net/quote
+
+
+vegeta attack -duration=10s -rate=2 -targets=target.list -output=report_raw.bin
+vegeta attack -duration=1m -rate=2 -targets=target.list -output=report_raw.bin
