@@ -6,6 +6,7 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/go-playground/validator/v10"
 	"github.com/kelseyhightower/envconfig"
 	"schneider.vip/problem"
 )
@@ -15,8 +16,8 @@ type Config struct {
 }
 
 type Quote struct {
-	Age     int      `json:"age"`
-	Breed   string   `json:"breed"`
+	Age     int      `json:"age" validate:"required"`
+	Breed   string   `json:"breed" validate:"required"`
 	Tariffs []Tariff `json:"tariffs"`
 }
 
@@ -28,6 +29,12 @@ type Tariff struct {
 func HandleQuote(w http.ResponseWriter, r *http.Request) {
 	var quote Quote
 	err := json.NewDecoder(r.Body).Decode(&quote)
+	if err != nil {
+		problem.New(problem.Wrap(err), problem.Status(http.StatusBadRequest)).WriteTo(w)
+		return
+	}
+
+	err = validate.Struct(quote)
 	if err != nil {
 		problem.New(problem.Wrap(err), problem.Status(http.StatusBadRequest)).WriteTo(w)
 		return
@@ -45,7 +52,10 @@ func HandleQuote(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+var validate *validator.Validate
+
 func main() {
+	validate = validator.New(validator.WithRequiredStructEnabled())
 	var config Config
 	err := envconfig.Process("dogop", &config)
 	if err != nil {

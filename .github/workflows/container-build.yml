@@ -1,0 +1,25 @@
+name: Deploy Image to GHCR
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+      push-store-image:
+        runs-on: ubuntu-latest
+        steps:
+          - name: 'Checkout GitHub Action'
+            uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+
+          - name: 'Login to GitHub Container Registry'
+            uses: docker/login-action@v3
+            with:
+              registry: ghcr.io
+              username: ${{github.actor}}
+              password: ${{secrets.GITHUB_TOKEN}}
+
+          - name: 'Build + Push Image'
+            run: |
+              docker build . --tag ghcr.io/remast/dogop-serverless:latest
+              docker push ghcr.io/remast/dogop-serverless:latest
