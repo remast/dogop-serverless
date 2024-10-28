@@ -12,7 +12,7 @@ import (
 )
 
 type Config struct {
-	Port string `default:"8080"`
+	Port string `default:"8080" envconfig:"PORT"`
 }
 
 type Quote struct {
