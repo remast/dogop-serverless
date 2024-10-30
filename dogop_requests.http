@@ -20,6 +20,16 @@ content-type: application/json
    "breed": "chow"
 }
 
+### Azure Function
+
+POST https://dogop-serverless-quote.azurewebsites.net/api/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
+
 ###
 
 POST https://europe-west10-dogop-serverless.cloudfunctions.net/quote

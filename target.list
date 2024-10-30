@@ -1,3 +1,3 @@
-POST https://europe-west10-dogop-serverless.cloudfunctions.net/quote
+POST https://dogop-serverless-quote.azurewebsites.net/api/quote
 Content-Type: application/json
 @quote_request.json
