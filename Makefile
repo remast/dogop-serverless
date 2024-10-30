@@ -1,8 +1,5 @@
 clean:
 	rm -rf build
 
-zip:
-	mkdir -p build/function
-	cp go.mod build/function
-	cp main.go build/function
-	zip -j -r build/function.zip build/function
+build-dist:
+	GOOS=linux GOARCH=amd64 go build -o build/function main.go

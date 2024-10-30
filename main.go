@@ -1,11 +1,11 @@
-package dogop
+package main
 
 import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 
-	"github.com/GoogleCloudPlatform/functions-framework-go/functions"
 	"github.com/go-playground/validator/v10"
 	"schneider.vip/problem"
 )
@@ -55,7 +55,14 @@ func HandleQuote(w http.ResponseWriter, r *http.Request) {
 
 var validate *validator.Validate
 
-func init() {
+func main() {
 	validate = validator.New(validator.WithRequiredStructEnabled())
-	functions.HTTP("HandleQuote", HandleQuote)
+
+	listenAddr := ":8080"
+	if val, ok := os.LookupEnv("FUNCTIONS_CUSTOMHANDLER_PORT"); ok {
+		listenAddr = ":" + val
+	}
+	http.HandleFunc("/api/quote", HandleQuote)
+	log.Printf("About to listen on %s. Go to https://127.0.0.1%s/", listenAddr, listenAddr)
+	log.Fatal(http.ListenAndServe(listenAddr, nil))
 }

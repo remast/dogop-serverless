@@ -1,4 +1,4 @@
-package dogop
+package main
 
 import (
 	"net/http"
