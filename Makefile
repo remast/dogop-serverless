@@ -1,6 +1,9 @@
 clean:
 	rm -rf build
 
+build-local:
+	go build -o function main.go
+
 build-dist:
 	GOOS=linux GOARCH=amd64 go build -o build/function/function main.go
 	cp host.json build/function
