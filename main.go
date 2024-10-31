@@ -62,16 +62,14 @@ func main() {
 		log.Fatal(err.Error())
 	}
 
-	r := http.NewServeMux()
-	r.HandleFunc("POST /api/quote", HandleQuote)
+	router := http.NewServeMux()
+	
+	router.HandleFunc("POST /api/quote", HandleQuote)
 
-	// Register Health Check Handler Function
-	// r.HandleFunc("GET /health", h.HandlerFunc)
-
-	r.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
+	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello DogOp!"))
 	})
 
 	log.Printf("Listening on port %v", config.Port)
-	http.ListenAndServe(fmt.Sprintf(":%v", config.Port), r)
+	http.ListenAndServe(fmt.Sprintf(":%v", config.Port), router)
 }
