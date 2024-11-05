@@ -1,4 +1,4 @@
-# Go über den Wolken - Code Beispiel
+# Go Serverless - Code Beispiel Google Cloud Run Function
 
 ## Nützliche Befehle
 
