@@ -1,12 +1,15 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/hellofresh/health-go/v5"
 	"github.com/kelseyhightower/envconfig"
 	"schneider.vip/problem"
 )
@@ -63,12 +66,36 @@ func main() {
 	}
 
 	router := http.NewServeMux()
-	
+
+	// Register Quote Handler
 	router.HandleFunc("POST /api/quote", HandleQuote)
 
+	// Register Hello Handler
 	router.HandleFunc("GET /", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Hello DogOp!"))
 	})
+
+	// Create Health Check
+	h, _ := health.New(
+		health.WithComponent(health.Component{
+			Name:    "dogop",
+			Version: "v0.0.1",
+		}),
+		health.WithChecks(
+			health.Config{
+				Name:      "check",
+				Timeout:   time.Second * 2,
+				SkipOnErr: false,
+				Check: func(ctx context.Context) error {
+					// check implementation goes here
+					return nil
+				},
+			},
+		),
+	)
+
+	// Register Handler Function
+	router.HandleFunc("GET /health", h.HandlerFunc)
 
 	log.Printf("Listening on port %v", config.Port)
 	http.ListenAndServe(fmt.Sprintf(":%v", config.Port), router)

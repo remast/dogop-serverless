@@ -1,3 +1,10 @@
 build
 tmp
 dogop
+function
+function.zip
+*bin
+results.html
+.terraform*
+terraform.tfstate
+.DS_Store
