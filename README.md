@@ -1,4 +1,4 @@
-# Go über den Wolken - Code Beispiel
+# Go Serverless - Code Beispiel Container Based
 
 ## Nützliche Befehle
 
