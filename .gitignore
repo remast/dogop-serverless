@@ -5,3 +5,6 @@ dogop
 *bin
 results.html
 .DS_Store
+.terraform*
+terraform.tfstate
+function

@@ -32,7 +32,7 @@ content-type: application/json
 
 ### Container App
 
-POST https://dogop-serverless.livelyground-3e6e8048.westeurope.azurecontainerapps.io//api/quote
+POST https://dogop.ashyforest-0cd99410.westeurope.azurecontainerapps.io/api/quote
 content-type: application/json
 
 {
