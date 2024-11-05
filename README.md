@@ -1,4 +1,6 @@
-# Go über den Wolken - Code Beispiel
+# Go Serverless - Code Beispiel Azure Function App
+
+Lokale Ausführung mit Azure Function App Core Tools
 
 ## Nützliche Befehle
 
