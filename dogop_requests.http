@@ -1,6 +1,6 @@
 GET http://localhost:8080/
 
-###
+### local
 
 POST http://localhost:8080/api/quote
 content-type: application/json
@@ -10,19 +10,42 @@ content-type: application/json
    "breed": "chow"
 }
 
-###
+### Google Cloud Run
 
-POST http://localhost:8080/api/offer
+POST https://dogop-serverless-746651650023.europe-west10.run.app/api/quote
 content-type: application/json
 
 {
-   "name": "Rollo",
    "age": 8,
-   "breed": "chow",
-   "customer": "jan"
+   "breed": "chow"
 }
 
+### Google Cloud Run Function
 
-###
+POST https://europe-west10-dogop-serverless.cloudfunctions.net/quote
+content-type: application/json
 
-GET http://localhost:8080/api/offer/427ed4de-6f51-4a09-baad-e3c2f962d2fe
+{
+   "age": 8,
+   "breed": "chow"
+}
+
+### Azure Function App
+
+POST https://dogop-serverless-quote.azurewebsites.net/api/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
+
+### Azure Container App
+
+POST https://dogop.ashyforest-0cd99410.westeurope.azurecontainerapps.io/api/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
