@@ -1,0 +1,2 @@
+POST https://dogop.ashyforest-0cd99410.westeurope.azurecontainerapps.io/api/quote
+@body_quote.json

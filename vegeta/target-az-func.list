@@ -1,0 +1,2 @@
+POST https://dogop-serverless-quote.azurewebsites.net/api/quote
+@body_quote.json
