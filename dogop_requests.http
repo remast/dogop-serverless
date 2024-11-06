@@ -1,6 +1,6 @@
 GET http://localhost:8080/
 
-### local
+### Local Azure Function App Test
 
 POST http://localhost:7071/api/quote
 content-type: application/json
@@ -10,7 +10,7 @@ content-type: application/json
    "breed": "chow"
 }
 
-### local
+### Google Cloud Run
 
 POST https://dogop-serverless-746651650023.europe-west10.run.app/api/quote
 content-type: application/json
@@ -30,7 +30,7 @@ content-type: application/json
    "breed": "chow"
 }
 
-###
+### Google Cloud Run Function
 
 POST https://europe-west10-dogop-serverless.cloudfunctions.net/quote
 content-type: application/json
