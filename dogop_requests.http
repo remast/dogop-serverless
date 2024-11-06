@@ -20,7 +20,7 @@ content-type: application/json
    "breed": "chow"
 }
 
-### Azure Function
+### Azure Function App
 
 POST https://dogop-serverless-quote.azurewebsites.net/api/quote
 content-type: application/json
