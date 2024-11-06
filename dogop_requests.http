@@ -30,7 +30,17 @@ content-type: application/json
    "breed": "chow"
 }
 
-### Container App
+### Azure Function App
+
+POST https://dogop-serverless-quote.azurewebsites.net/api/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
+
+### Azure Container App
 
 POST https://dogop.ashyforest-0cd99410.westeurope.azurecontainerapps.io/api/quote
 content-type: application/json
