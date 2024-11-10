@@ -6,5 +6,5 @@ dogop
 results.html
 .DS_Store
 .terraform*
-terraform.tfstate
+terraform.tfstate*
 function

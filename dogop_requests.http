@@ -1,8 +1,8 @@
-GET http://localhost:8080/
+GET http://localhost:8080
 
 ### local
 
-POST http://localhost:8080/api/quote
+POST http://localhost:8080
 content-type: application/json
 
 {
