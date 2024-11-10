@@ -58,17 +58,21 @@ var validate *validator.Validate
 func main() {
 	validate = validator.New(validator.WithRequiredStructEnabled())
 
-	// 1. Port initialisieren
-	listenAddr := ":8080"
-	customHandlerPort, ok := os.LookupEnv("FUNCTIONS_CUSTOMHANDLER_PORT")
-	if ok {
-		listenAddr = ":" + customHandlerPort
+	// 1. Port lesen (Default 8080)
+	port := "8080"
+	if envPort := os.Getenv("FUNCTIONS_CUSTOMHANDLER_PORT"); envPort != "" {
+		port = envPort
 	}
 
-	// 2. Quote Handler registrieren
+	// 2. Hostname lesen (default 127.0.0.1)
+	hostname := ""
+	if localOnly := os.Getenv("LOCAL_ONLY"); localOnly == "true" {
+		hostname = "127.0.0.1"
+	}
+
+	// 3. Quote Handler registrieren
 	http.HandleFunc("/api/quote", HandleQuote)
 
-	// 3. Web Server starten
-	log.Printf("About to listen on %s. Go to https://127.0.0.1%s/", listenAddr, listenAddr)
-	log.Fatal(http.ListenAndServe(listenAddr, nil))
+	// 4. Web Server starten
+	log.Fatal(http.ListenAndServe(hostname+":"+port, nil))
 }

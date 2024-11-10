@@ -10,6 +10,16 @@ content-type: application/json
    "breed": "chow"
 }
 
+### Local Azure Function App Test (with Core Tools)
+
+POST http://localhost:7071/api/quote
+content-type: application/json
+
+{
+   "age": 8,
+   "breed": "chow"
+}
+
 ### Google Cloud Run
 
 POST https://dogop-serverless-746651650023.europe-west10.run.app/api/quote
