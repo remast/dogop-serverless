@@ -2,7 +2,7 @@ module crossnative/dogop
 
 go 1.22.0
 
-toolchain go1.23.4
+toolchain go1.23.5
 
 require (
 	github.com/go-playground/validator/v10 v10.24.0
