@@ -6,7 +6,7 @@ toolchain go1.24.5
 
 require (
 	github.com/go-playground/validator/v10 v10.27.0
-	github.com/hellofresh/health-go/v5 v5.5.4
+	github.com/hellofresh/health-go/v5 v5.5.5
 	github.com/kelseyhightower/envconfig v1.4.0
 	schneider.vip/problem v1.9.1
 )
